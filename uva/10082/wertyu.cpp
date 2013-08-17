@@ -2,7 +2,8 @@
 
 using namespace std;
 
-char row[] = "'1234567890-=QWERTYUIOP[]ASDFGHIJKL;'ZXCVBNM,./";
+char row[] = 
+  "`1234567890-=QWERTYUIOP[]ASDFGHJKL;'ZXCVBNM,./";
 
 char symbols[256];
 
@@ -12,18 +13,16 @@ main() {
   for (int i = 1; row[i]; i++) { 
     symbols[row[i]] = row[i-1];
   }
+  symbols[' '] = ' ';
 
   string line;
   getline(cin, line);
 
   while (!cin.eof()) {
     char *out = new char[line.length() + 1];
-    const char *in = line.c_str();
     int i = 0;
     for (i = 0; i < line.length(); i++) {
-      if (in[i] != ' ') {
-	out[i] = symbols[in[i]];
-      }
+      out[i] = symbols[line[i]];
     }
 
     out[line.length()] = '\0';
