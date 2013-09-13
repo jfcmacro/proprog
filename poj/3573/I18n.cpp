@@ -1,22 +1,26 @@
 #include <iostream>
 #include <map>
-#include <list>
+#include <vector>
 #include <sstream>
 
 using namespace std;
 
 struct ctrlAbbr {
+  ctrlAbbr(); //: abbr(""), act(false) { } 
+  ctrlAbbr(string& abbr, bool& act) : abbr(abbr), act(act) { } 
   string abbr;
   bool   act;
-  ctrlAbbr();
 };
 
-ctrlAbbr::ctrlAbbr() {
-  abbr = "";
-  act = false;
-}
+ctrlAbbr::ctrlAbbr() : abbr(""), act(false) { }
 
-typedef list<string> ctrlWord ;
+
+// ctrlAbbr::ctrlAbbr() {
+//   abbr = "";
+//   act = false;
+// }
+
+typedef vector<string> ctrlWord ;
 
 map<string, ctrlAbbr> fromWord;
 map<string, ctrlWord> fromAbbr;
@@ -67,17 +71,17 @@ main(int argc, char *argv[]) {
 	
 	ctrlAbbr& ca = fromWord[word];
 	if (ca.abbr == "") { // first Time or is an abbr
-	  list<string> l = fromAbbr[word];
+	  vector<string> l = fromAbbr[word];
 	  if (l.size() == 0) {
 	    ca.abbr = toAbbr(word);
 	    ca.act  = false;
 	    fromWord[word] = ca;
-	    list<string> *list = new list<string>();
-	    list->add(word);
-	    fromAbbr[toAbbr(word)] = *list;
+	    vector<string> *lst = new vector<string>();
+	    lst->push_back(word);
+	    fromAbbr[toAbbr(word)] = *lst;
 	    cout << word;
 	  }
-	  else if (l.length() != 1) {
+	  else if (l.size() != 1) {
 	    cout << l[0];
 	  }
 	  else {
@@ -89,9 +93,9 @@ main(int argc, char *argv[]) {
 	  cout << word;
 	}
 	else {
-	  list<string> l = word[ca.abr];
-	  if (l.lenght() == 1) {
-	    cout << ca.abr;
+	  vector<string> lst = word[ca.abbr];
+	  if (lst.lenght() == 1) {
+	    cout << ca.abbr;
 	  }
 	  else {
 	    cout << word;
