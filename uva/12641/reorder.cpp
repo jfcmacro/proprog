@@ -20,9 +20,8 @@ main() {
     stringstream ss(line);
 
     int nword = 0;
-    while (!ss.eof()) {
-      string str;
-      ss >> str;
+    string str;
+    while (ss >> str) {
       if (str.length() > 2) {
 	map<char, string>  m;
 	m.insert( pair<char,string>(str[str.length() -1], str) );
@@ -36,9 +35,7 @@ main() {
  
     bool nofirst = true;
 
-    while (!ss2.eof()) {
-      string str;
-      ss2 >> str;
+    while (ss2 >> str) {
 
       if (nofirst) {
     	nofirst = false;
