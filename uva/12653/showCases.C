@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <map>
 
@@ -22,7 +21,6 @@ f(long n, long tm, long tb) {
   if (n == 0) {
     casos.insert(pair<long,long>(tm,tb));
   }
-  //  cout << "n: " << n <<  " tb: " << tb << " tm: " << tm << endl;
 }
 
 long
@@ -38,23 +36,17 @@ int
 main(int argc, char *argv[]) {
 
   long n;
-  long cb;
-  long cm;
-  
-  while (cin >> n >> cm >> cb) {
-    f(n,0,0);
-    // cout << n << endl;
-    long total = 0;
 
+  cout << "enter a value of n> " << endl;
+  cin >> n;
+
+  for (int i = 5; i <= n; i += 5) {
+    f(i,0,0);
+    cout << "For current value of n: " << i << endl; 
     for (map<long,long>::iterator it = casos.begin(); 
 	 it != casos.end(); it++) {
-      // cout << "nb: " << it->first << " nm: " << it->second << endl;
-      long tmp = 0;
-      tmp = (_power(cm,it->first) * _power(cb,it->second));
-      tmp *= (it->first == 0 || it->second == 0 ? 1 : (it->first + it->second));
-      total += tmp;
+      cout << "nm: " << it->first << " nb: " << it->second << endl;
     }
-    cout << total << endl;
     casos.clear();
   }
   return 0;
