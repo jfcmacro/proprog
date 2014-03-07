@@ -1,32 +1,36 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int pos[2300000];
+vector<int> p;
 
 int
 main() {
-  int n;
-  cin >> n;
-  int max = 0;
 
-  for (int i = 0; i < n; i++) {
-    int curPos;
+    int n;
+    cin >> n;
+    int max = 0;
 
-    cin >> curPos;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        p.push_back(x);
+    }
 
-    int lim = (curPos + n + 1);
+    sort(p.begin(), p.end(), greater<int>());
 
-    for (int j = curPos; j < lim; j++) {
+    for (vector<int>::iterator it = p.begin(); it != p.end(); it++)
+        cout << *it << endl;
+    // int lim = (curPos + n + 1);
+
+    /* for (int j = curPos; j < lim; j++) {
 
       pos[j]++;
 
       if (pos[j] > max) max = pos[j];
-    }
-
-  }
-
-  cout << max << endl;
-
-  return 0;
+    } */
+    cout << max << endl;
+    return 0;
 }
