@@ -12,5 +12,4 @@ tnpo n t = tnpo (iter n) (t + 1)
 main :: IO ()
 main = do s <- getLine
           let n = read s
-          if n == 1 then tnpo n 1
-                    else tnpo n 0
+          tnpo n 1
